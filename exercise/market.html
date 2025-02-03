@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Market</title>
+</head>
+<body>
+    
+</body>
+</html>
+
+<script>
+    let products = [['Apel', 35000, 100], ['Anggur', 40000, 50], ['Jeruk', 15000, 15]]
+    
+    function PrintProduct(_products){
+        let printProducts = ''
+        for(let item of _products){
+            printProducts += `${item[0]} (${item[1]}/Kg) - Stock: ${item[2]} \n`
+        }
+
+        return printProducts
+    }
+
+    alert(PrintProduct(products))
+</script>

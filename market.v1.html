@@ -1,0 +1,54 @@
+<script>
+    // const products = ['Apel', 'Jeruk', 'Anggur']
+    // const prices = [10000, 15000, 20000]
+    // const stocks = [10, 15, 20]
+
+    const products = [
+        {
+            name: 'Apel', 
+            price: 37000, 
+            stock: 55,
+            unit: 'Kg',
+            category: 'Buah'
+        },
+        {
+            name: 'Anggur', 
+            price: 41500, 
+            stock: 25,
+            unit: 'Kg',
+            category: 'Buah'
+        },
+        {
+            name: 'Sawi', 
+            price: 2350, 
+            stock: 100,
+            unit: 'Pcs',
+            category: 'Sayur'
+
+        }
+    ]
+
+    
+    
+    // Transform Penomoran User Menjadi Penomoran Index (Mangkanya Langsung di Minus 1)
+    do{
+        var findProduct = prompt(`Find Our Product! \n Input Product Name:`) // 1-1=0
+        
+        var productFound = ''
+        for(let item of products){
+            if(findProduct.toLowerCase() === item.name.toLowerCase()){
+                productFound += `Name: ${item.name} \n
+                Price: Rp.${item.price.toLocaleString('id-ID')} \n
+                Stock: ${item.stock} \n
+                Unit: ${item.unit} \n
+                Category: ${item.category}`
+            }
+        }
+
+        if(productFound !== ''){
+            alert(productFound)
+        }else{
+            alert(`(!) Product Not Found! Find Another Product!`)
+        }
+    }while(productFound === '')
+</script>
