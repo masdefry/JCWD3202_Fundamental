@@ -1,0 +1,38 @@
+<script>
+    const productsData = [
+        { name: 'Apel', price: 35000 , stocks: 100 , unit: 'Kg', category: 'Buah' }, // 0+1 = 1
+        { name: 'Anggur', price: 43000 , stocks: 50 , unit: 'Kg', category: 'Buah' }, // 1+1 = 2
+        { name: 'Sawi', price: 2350 , stocks: 300 , unit: 'Pcs', category: 'Sayur' } // 2+1 = 3
+    ]
+
+    function PrintProducts(_products){
+        let printProduct = ''
+        
+        _products.forEach((product, index) => {
+            printProduct += `${index+1}. ${product.name} \n`
+        })
+
+        return printProduct
+    }
+
+    do{
+        var indexOfProduct = Number(prompt(`${PrintProducts(productsData)} \n Enter Product Number:`))-1 // 1-1=0
+    }while(indexOfProduct < 0 || indexOfProduct > productsData.length-1)
+
+    do{
+        var qty = prompt(`Input Your Qty`)
+        var selectedProduct = productsData[indexOfProduct] 
+        
+        if(qty > selectedProduct.stocks){
+            alert('Insufficient Stock!')
+        }
+    }while(qty > selectedProduct.stocks)
+
+    alert(`
+        Name: ${selectedProduct.name} \n
+        Price: ${selectedProduct.price} \n
+        Qty: ${qty} \n
+        ------------------------- \n
+        Total: ${selectedProduct.price * qty}
+    `)
+</script>
