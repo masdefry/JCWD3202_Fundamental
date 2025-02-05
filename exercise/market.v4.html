@@ -5,53 +5,38 @@
         { name: 'Sawi', price: 2350 , stocks: 300 , unit: 'Pcs', category: 'Sayur' } // 2+1 = 3
     ]
 
-    const carts = []
-
     function PrintProducts(_products){
         let printProduct = ''
         
         _products.forEach((product, index) => {
-            printProduct += `${index+1}. ${product.name} x ${product?.qty? product.qty:''} = ${product?.qty? product.qty * product.price:''} \n`
+            printProduct += `${index+1}. ${product.name} \n`
         })
 
         return printProduct
     }
 
     do{
-        var selectedMenu = prompt(`
-            Item in Your Cart: ${carts.length} \n
-            ${PrintProducts(carts)} \n
-            ------------------------- \n
-            1. Buy Item \n
-            2. Checkout & Payment \n
-            Select Menu:
-        `)
+        var indexOfProduct = Number(prompt(`${PrintProducts(productsData)} \n Enter Product Number:`))-1 // 1-1=0
+    }while(indexOfProduct < 0 || indexOfProduct > productsData.length-1)
 
-        if(selectedMenu == 1){
-            do{
-                var indexOfProduct = Number(prompt(`${PrintProducts(productsData)} \n Enter Product Number:`))-1 // 1-1=0
-            }while(indexOfProduct < 0 || indexOfProduct > productsData.length-1)
+    do{
+        var qty = prompt(`Input Your Qty`)
+        var selectedProduct = productsData[indexOfProduct] 
 
-            do{
-                var qty = prompt(`Input Your Qty`)
-                var selectedProduct = productsData[indexOfProduct] 
-
-                if(qty > selectedProduct.stocks){
-                    alert('Insufficient Stock!')
-                }else{
-                    carts.push({...selectedProduct, qty})
-                }
-            }while(qty > selectedProduct.stocks)
-
-            alert(`
-                This Product Add to Cart Successfull (!) \n
-                Name: ${selectedProduct.name} \n
-                Price: ${selectedProduct.price} \n
-                Qty: ${qty} \n
-                ------------------------------ \n
-                Total: ${selectedProduct.price * qty}
-            `)
+        if(qty > selectedProduct.stocks){
+            alert('Insufficient Stock!')
+        }else{
+            carts.push({...selectedProduct, qty})
         }
-    }while(selectedMenu >= 1 && selectedMenu <= 2)
+    }while(qty > selectedProduct.stocks)
+
+    alert(`
+        This Product Add to Cart Successfull (!) \n
+        Name: ${selectedProduct.name} \n
+        Price: ${selectedProduct.price} \n
+        Qty: ${qty} \n
+        ------------------------------ \n
+        Total: ${selectedProduct.price * qty}
+    `)
     
 </script>

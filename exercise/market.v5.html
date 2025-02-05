@@ -1,0 +1,67 @@
+<script>
+    const productsData = [
+        { name: 'Apel', price: 35000 , stocks: 100 , unit: 'Kg', category: 'Buah' }, // 0+1 = 1
+        { name: 'Anggur', price: 43000 , stocks: 50 , unit: 'Kg', category: 'Buah' }, // 1+1 = 2
+        { name: 'Sawi', price: 2350 , stocks: 300 , unit: 'Pcs', category: 'Sayur' } // 2+1 = 3
+    ]
+
+    const carts = [] // [{name, price, stocks, unit, category, qty, totalPrice}]
+
+    function PrintProducts(_products){ // _products === carts
+        let printProduct = ''
+        
+        _products.forEach((product, index) => {
+            printProduct += `${index+1}. ${product.name} ${product.qty? `x ${product.qty}/${product.unit} = ${product.totalPrice}` : ''} \n`
+        })
+
+        return printProduct
+    }
+
+    function BuyItem(){
+        do{
+            var indexOfProduct = Number(prompt(`${PrintProducts(productsData)} \n Enter Product Number:`))-1 // 1-1=0
+        }while(indexOfProduct < 0 || indexOfProduct > productsData.length-1)
+
+        do{
+            var qty = prompt(`Input Your Qty`)
+            var selectedProduct = productsData[indexOfProduct] // {name, price, stocks, ...}
+
+            if(qty > selectedProduct.stocks){
+                alert('Insufficient Stock!')
+            }
+        }while(qty > selectedProduct.stocks)
+
+        carts.push({...selectedProduct, qty, totalPrice: qty * selectedProduct.price}) // {name, price, stocks, unit, ... + qty}
+
+        alert(`
+            This Product Add to Cart Successfull (!) \n
+            Name: ${selectedProduct.name} \n
+            Price: ${selectedProduct.price} \n
+            Qty: ${qty} \n
+            ------------------------------ \n
+            Total: ${selectedProduct.price * qty}
+        `)
+    }
+
+    function MainMenu(){
+        do{
+            var selectMenu = prompt(`
+                Item In Your Cart: ${carts.length} \n
+                ${PrintProducts(carts)}
+                ----------------------------------- \n
+                1. Buy Item \n
+                2. Checkout & Payment \n
+                Type Menu:
+            `)
+
+            if(selectMenu == 1){
+                // Execute Buy Item
+                BuyItem()
+            }else if(selectMenu == 2){
+                // Execute Checkout & Payment
+            }
+        }while(selectMenu >= 1 || selectMenu <= 2)
+    }
+
+    MainMenu()
+</script>
