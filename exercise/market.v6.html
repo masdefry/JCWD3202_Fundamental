@@ -43,7 +43,7 @@
         `)
     }
 
-    function MainMenu(){
+    function CustomerMenu(){
         do{
             var selectMenu = prompt(`
                 Item In Your Cart: ${carts.length} \n
@@ -51,6 +51,7 @@
                 ----------------------------------- \n
                 1. Buy Item \n
                 2. Checkout & Payment \n
+                3. Exit
                 Type Menu:
             `)
 
@@ -59,6 +60,22 @@
                 BuyItem()
             }else if(selectMenu == 2){
                 // Execute Checkout & Payment
+            }
+        }while(selectMenu >= 1 || selectMenu <= 2)
+    }
+
+    function MainMenu(){
+        do{
+            var selectMenu = prompt(`
+                1. Cashier \n
+                2. Customer \n
+                Type Menu:
+            `)
+
+            if(selectMenu == 1){
+                
+            }else if(selectMenu == 2){
+                CustomerMenu()
             }
         }while(selectMenu >= 1 || selectMenu <= 2)
     }
