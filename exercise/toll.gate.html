@@ -18,8 +18,8 @@
         vehicleType = 'truck'
     }
 
-    const indexOfEnterGate = tollGates.findIndex(item => item.gate === enterGate)
-    const indexOfExitGate = tollGates.findIndex(item => item.gate === exitGate)
+    const indexOfEnterGate = tollGates.findIndex(item => item?.gate?.toLowerCase() === enterGate.toLowerCase())
+    const indexOfExitGate = tollGates.findIndex(item => item?.gate?.toLowerCase() === exitGate.toLowerCase())
 
     let total = 0
     for(let i=indexOfEnterGate; i<=indexOfExitGate; i++){
