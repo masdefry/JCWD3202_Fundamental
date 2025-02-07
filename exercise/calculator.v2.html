@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="result">
+
+    </h1>
+    <div id="section-button">
+
+    </div>
+</body>
+<script>
+    function DisplayClickedButton(input){
+        console.log(input)
+        if(input != '='){
+            console.log('>>>')
+            document.getElementById('result').innerHTML += input
+        }else{
+            console.log('<<<')
+            document.getElementById('result').innerHTML += `= ${eval(document.getElementById('result').innerText)}`
+        }
+    }
+
+    function GenerateButton(){
+        let output = ''
+        let buttonText = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, '+', '-', '*', '/', '=']
+        let counter = 1
+
+        buttonText.forEach(item => {
+            if(counter % 3 === 0){
+                output += `<button onclick="DisplayClickedButton('${item}')">${item}</button> <br />`
+            }else{
+                output += `<button onclick="DisplayClickedButton('${item}')">${item}</button>`
+            }
+            counter++
+        })
+
+        document.getElementById('section-button').innerHTML = output
+    }
+
+    GenerateButton()
+</script>
+</html>
